@@ -1,5 +1,6 @@
 package study.example.discount;
 
+import org.springframework.stereotype.Component;
 import study.example.member.Grade;
 import study.example.member.Member;
 

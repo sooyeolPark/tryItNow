@@ -1,8 +1,10 @@
 package study.example.discount;
 
+import org.springframework.stereotype.Component;
 import study.example.member.Grade;
 import study.example.member.Member;
 
+@Component
 public class RateDiscountPolicy implements DiscountPolicy{
     private int discountPercent = 10; //10% 할인
     @Override
