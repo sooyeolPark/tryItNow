@@ -1,14 +1,21 @@
 package study.example.order;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
+import study.example.annotation.MainDiscountPolicy;
 import study.example.discount.DiscountPolicy;
 import study.example.discount.FixDiscountPolicy;
 import study.example.member.Member;
 import study.example.member.MemberRepository;
 import study.example.member.MemoryMemberRepository;
 @Component
+//롬복 라이브러리가 제공하는 @RequiredArgsConstructor 기능을 사용하면 final이 붙은 필드를 모아서
+//생성자를 자동으로 만들어준다. (다음 코드에는 보이지 않지만 실제 호출 가능하다.)
+//@RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService{
+
     private final MemberRepository memberRepository;
     private final DiscountPolicy discountPolicy;
 
@@ -21,7 +28,7 @@ public class OrderServiceImpl implements OrderService{
     // 생성자 주입은 객체를 생성할 때 딱 1번만 호출되므로 이후에 호출되는 일이 없다. 따라서 불변하게 설계할
     // 수 있다.
     @Autowired
-    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+    public OrderServiceImpl(MemberRepository memberRepository,@MainDiscountPolicy DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
     }
